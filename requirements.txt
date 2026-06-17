@@ -1,2 +1,5 @@
 pymupdf
-anthropic
+openai
+python-dotenv
+opencv-python
+ultralytics
