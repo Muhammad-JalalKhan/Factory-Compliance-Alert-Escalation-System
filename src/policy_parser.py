@@ -56,7 +56,7 @@ def parse_rules_with_openrouter(policy_text):
 
     # Using Meta's Llama 3 8B Instruct (Highly reliable free model on OpenRouter)
     response = client.chat.completions.create(
-        model="meta-llama/llama-3-8b-instruct:free",
+        model="qwen/qwen3.5-9b",
         messages=[{"role": "user", "content": prompt}]
     )
     
