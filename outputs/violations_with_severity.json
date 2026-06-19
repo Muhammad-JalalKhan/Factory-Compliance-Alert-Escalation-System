@@ -1,0 +1,38 @@
+[
+  {
+    "behavior_class": "Safe Walkway Violation",
+    "policy_rule_ref": "Section 3.3.2",
+    "unsafe_indicator": "Person's position beyond green walkway boundaries",
+    "safe_indicator": "Person remains within boundaries of green-marked walkway",
+    "severity_hint": "HIGH",
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "behavior_class": "Unauthorized Intervention",
+    "policy_rule_ref": "Section 4.3.2",
+    "unsafe_indicator": "Person interacting with equipment without green safety vest",
+    "safe_indicator": "Person interacting with equipment wearing green safety vest",
+    "severity_hint": "CRITICAL",
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "behavior_class": "Opened Panel Cover",
+    "policy_rule_ref": "Section 5.2.2",
+    "unsafe_indicator": "Panel cover in open position during production operations",
+    "safe_indicator": "Panel cover fully closed",
+    "severity_hint": "HIGH",
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "behavior_class": "Carrying Overload with Forklift",
+    "policy_rule_ref": "Section 6.3.2",
+    "unsafe_indicator": "3 or more blocks on forklift forks during travel/maneuvering",
+    "safe_indicator": "2 or fewer blocks on forklift forks in single load",
+    "severity_hint": "CRITICAL",
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  }
+]

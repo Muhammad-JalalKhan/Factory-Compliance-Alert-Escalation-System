@@ -1,0 +1,46 @@
+[
+  {
+    "event_id": "de8c3961-100e-459a-8360-5857cca9aa0b",
+    "timestamp": null,
+    "clip_id": null,
+    "zone": "Unknown",
+    "behavior_class": "Safe Walkway Violation",
+    "policy_rule_ref": null,
+    "event_description": null,
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "event_id": "471867c8-7fd0-4c7d-b6fb-2e5176a83815",
+    "timestamp": null,
+    "clip_id": null,
+    "zone": "Unknown",
+    "behavior_class": "Unauthorized Intervention",
+    "policy_rule_ref": null,
+    "event_description": null,
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "event_id": "d3394a6d-c0a4-4094-9857-70b0ebfd85ec",
+    "timestamp": null,
+    "clip_id": null,
+    "zone": "Unknown",
+    "behavior_class": "Opened Panel Cover",
+    "policy_rule_ref": null,
+    "event_description": null,
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  },
+  {
+    "event_id": "7edbb61c-3bae-4141-a89d-8473d678ccd6",
+    "timestamp": null,
+    "clip_id": null,
+    "zone": "Unknown",
+    "behavior_class": "Carrying Overload with Forklift",
+    "policy_rule_ref": null,
+    "event_description": null,
+    "severity": "LOW",
+    "escalation_action": "Logged to DB"
+  }
+]

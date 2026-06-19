@@ -1,0 +1,5 @@
+event_id,timestamp,clip_id,zone,behavior_class,policy_rule_ref,event_description,severity,escalation_action
+de8c3961-100e-459a-8360-5857cca9aa0b,,,Unknown,Safe Walkway Violation,,,LOW,Logged to DB
+471867c8-7fd0-4c7d-b6fb-2e5176a83815,,,Unknown,Unauthorized Intervention,,,LOW,Logged to DB
+d3394a6d-c0a4-4094-9857-70b0ebfd85ec,,,Unknown,Opened Panel Cover,,,LOW,Logged to DB
+7edbb61c-3bae-4141-a89d-8473d678ccd6,,,Unknown,Carrying Overload with Forklift,,,LOW,Logged to DB
