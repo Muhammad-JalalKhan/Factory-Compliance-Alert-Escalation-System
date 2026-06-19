@@ -51,27 +51,28 @@ class EdgeProcessor:
 # LAYER 2: CLOUD ORCHESTRATION (SMART VLM)
 # ==========================================
 class CloudVLM:
-    def __init__(self):
+    def __init__(self, rules): # Accept the rules here
         print("Initializing Cloud AI Orchestration (OpenRouter)...")
+        self.rules = rules 
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key=os.getenv("OPENROUTER_API_KEY")
         )
-        # FIX B: Swapped to a much more reliable free Vision model
-        self.model = "qwen/qwen2.5-vl-72b-instruct" 
-        # Backup free model if Gemini is busy: "meta-llama/llama-3.2-11b-vision-instruct:free"
+        self.model = "qwen/qwen2.5-vl-72b-instruct"
 
     def verify_safety_breach(self, cropped_image):
-        """Compresses the image and asks the VLM for a final ruling."""
-        
-        # FIX A: Resize the crop to 256x256 max to prevent free-tier payload limits crashing the API
         small_crop = cv2.resize(cropped_image, (256, 256))
-        
-        # Lower the JPEG quality to 60 (down from 85) to shrink the base64 string further
         _, buffer = cv2.imencode('.jpg', small_crop, [cv2.IMWRITE_JPEG_QUALITY, 60])
         b64_image = base64.standard_b64encode(buffer).decode('utf-8')
         
-        prompt = "Look at this factory worker. Are they wearing a high-visibility safety vest? Respond ONLY with valid JSON: {'wearing_vest': true/false, 'reason': 'short description'}"
+        # --- NEW: Dynamic Prompt using your parsed policy ---
+        rules_text = json.dumps(self.rules, indent=2)
+        prompt = f"""You are a strict factory safety AI. Read these rules extracted from our policy:
+        {rules_text}
+        
+        Look at the cropped image of this worker. Are they violating the rules?
+        Respond ONLY with valid JSON: {{'wearing_vest': true/false, 'reason': 'short description'}}
+        """
         
         try:
             response = self.client.chat.completions.create(
@@ -106,8 +107,14 @@ class CloudVLM:
 # ==========================================
 def run_hybrid_pipeline(video_path):
     clip_id = Path(video_path).stem
+    
+    # --- NEW: Load the parsed rules from the backend ---
+    rules_path = os.path.join("outputs", "extracted_rules.json")
+    with open(rules_path, "r", encoding="utf-8") as f:
+        parsed_rules = json.load(f)
+        
     edge = EdgeProcessor()
-    cloud = CloudVLM()
+    cloud = CloudVLM(parsed_rules) # Pass the rules to the Cloud AI
     
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -154,6 +161,13 @@ def run_hybrid_pipeline(video_path):
                     worker_crop = frame[max(0, y1):min(height, y2), max(0, x1):min(width, x2)]
                     
                     if worker_crop.size > 0:
+                        
+                        # --- ADDED: Save crop for PDF Report ---
+                        incident_id = str(uuid.uuid4())
+                        os.makedirs("outputs/crops", exist_ok=True)
+                        cv2.imwrite(f"outputs/crops/{incident_id}.jpg", worker_crop)
+                        # ---------------------------------------
+                        
                         vlm_ruling = cloud.verify_safety_breach(worker_crop)
                         
                         if not vlm_ruling.get("wearing_vest", True):
@@ -161,7 +175,7 @@ def run_hybrid_pipeline(video_path):
                             print(f"  🚨 CRITICAL VIOLATION: {reason}")
                             
                             violations_log.append({
-                                "event_id": str(uuid.uuid4()),
+                                "event_id": incident_id, # <-- USE THE SAME ID HERE
                                 "clip_id": clip_id,
                                 "timestamp": datetime.now(timezone.utc).isoformat(),
                                 "timestamp_in_clip_sec": round(timestamp_sec, 2),
@@ -192,9 +206,26 @@ def run_hybrid_pipeline(video_path):
 if __name__ == "__main__":
     os.makedirs("outputs", exist_ok=True)
     
-    # Run the pipeline on the test video
-    final_logs = run_hybrid_pipeline("data/train_clip.mp4")
+    # Define the directory containing your curated test videos
+    data_dir = Path("data/evaluation_batch")
+    all_violations_log = []
     
-    output_path = "outputs/raw_detections.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json
+    # Find all mp4 videos in the folder
+    video_files = list(data_dir.glob("*.mp4"))
+    
+    if not video_files:
+        print(f"No videos found in {data_dir}. Please add some test files.")
+    else:
+        print(f"Found {len(video_files)} videos for batch processing.")
+        
+        # Loop through and process each video sequentially
+        for video_path in video_files:
+            clip_logs = run_hybrid_pipeline(str(video_path))
+            all_violations_log.extend(clip_logs)
+        
+        # Save the aggregated results from all videos into one master JSON
+        output_path = "outputs/raw_detections.json"
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(all_violations_log, f, indent=2)
+            
+        print(f"\nBatch processing finished. Logged {len(all_violations_log)} total violations to {output_path}.")
