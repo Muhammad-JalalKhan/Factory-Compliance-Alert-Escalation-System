@@ -1,0 +1,11 @@
+[theme]
+# A sleek, industrial high-contrast dark mode
+primaryColor = "#00FFAA"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1E212B"
+textColor = "#FAFAFA"
+font = "sans serif"
+
+[server]
+# Removes the default Streamlit hamburger menu for a cleaner, deployed look
+toolbarMode = "minimal"
