@@ -584,17 +584,3 @@ flake8 src/
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support & Contact
-
-For issues, questions, or feature requests:
-
-- **Issues**: Open an issue on the repository
-- **Email**: [support-email]
-- **Documentation**: See [docs/](docs/) folder for detailed guides
-- **Roadmap**: Check [ROADMAP.md](ROADMAP.md) for planned features
-
----
-
-**Last Updated**: June 2024
-**Version**: 1.0.0
-**Maintainers**: [Your Organization]
