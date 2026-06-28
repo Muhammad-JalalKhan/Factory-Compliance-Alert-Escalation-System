@@ -24,6 +24,9 @@
 
 Factory Compliance & Industrial Safety System is an enterprise-grade, AI-powered platform designed to monitor and enforce factory safety policies in real-time. The system combines edge-based computer vision (YOLOv8) with cloud-based AI verification (OpenRouter VLM) to detect policy violations, escalate incidents, and generate comprehensive compliance reports.
 
+![Uploading Gemini_Generated_Image_dl3fzjdl3fzjdl3f.png…]()
+
+
 ### Key Capabilities
 
 - **Real-time Safety Monitoring**: Continuous surveillance of factory floor operations using advanced computer vision
@@ -31,6 +34,9 @@ Factory Compliance & Industrial Safety System is an enterprise-grade, AI-powered
 - **Intelligent Escalation**: Context-aware incident escalation with severity assessment
 - **Compliance Reporting**: Automated generation of compliance reports in multiple formats (CSV, JSON, PDF)
 - **Industrial Dashboard**: Real-time supervision interface with enterprise-grade UI/UX
+
+<img width="2816" height="1536" alt="Gemini_Generated_Image_1ftp0p1ftp0p1ftp" src="https://github.com/user-attachments/assets/8442f5e6-dc62-42b1-b77b-aa3cc828d23e" />
+
 
 ## ✨ Features
 
@@ -54,6 +60,9 @@ Factory Compliance & Industrial Safety System is an enterprise-grade, AI-powered
 - **Containerization**: Docker support for consistent deployment across environments
 - **Scalable Architecture**: Modular design supporting multi-zone, multi-camera deployments
 - **API Integration**: OpenAI/OpenRouter for advanced NLP and vision capabilities
+
+<img width="2752" height="1536" alt="Gemini_Generated_Image_nhlsqfnhlsqfnhls" src="https://github.com/user-attachments/assets/5689fcff-f467-42ba-9562-3362002d86d8" />
+
 
 ## 🏗️ Architecture
 
@@ -102,6 +111,7 @@ Factory Compliance & Industrial Safety System is an enterprise-grade, AI-powered
         │  - Alert Console   │
         └────────────────────┘
 ```
+<img width="2816" height="1536" alt="Gemini_Generated_Image_qof2p4qof2p4qof2" src="https://github.com/user-attachments/assets/17f9adbb-9f7d-4d72-bbb4-d192a2f45314" />
 
 ### Module Breakdown
 
