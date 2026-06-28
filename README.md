@@ -478,14 +478,6 @@ services:
     restart: unless-stopped
 ```
 
-### Kubernetes Deployment (Optional)
-
-```bash
-# Create ConfigMap for environment variables
-kubectl create configmap compliance-config --from-env-file=.env
-
-# Deploy
-kubectl apply -f k8s-deployment.yaml
 ```
 
 ## 🔧 Troubleshooting
@@ -502,17 +494,7 @@ pip install --upgrade -r requirements.txt
 python -c "import openai; print(openai.__version__)"
 ```
 
-#### 2. **CUDA/GPU Issues**
-
-```bash
-# Check GPU availability
-python -c "import torch; print(torch.cuda.is_available())"
-
-# If False, reinstall PyTorch CPU version
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-```
-
-#### 3. **API Key Errors**
+#### 2. **API Key Errors**
 
 ```bash
 # Verify .env file exists and contains correct keys
@@ -522,27 +504,7 @@ cat .env | grep OPENROUTER_API_KEY
 python test_key.py
 ```
 
-#### 4. **Database Lock Error**
-
-```bash
-# Delete corrupted database and reinitialize
-rm outputs/compliance.db
-
-# Restart application to recreate database
-streamlit run src/dashboard/app.py
-```
-
-#### 5. **Out of Memory (OOM)**
-
-```bash
-# Use smaller YOLO model
-# In detector.py, change:
-# self.local_model = YOLO("yolov8n.pt")  # nano
-# to:
-# self.local_model = YOLO("yolov8s.pt")  # small (faster)
-```
-
-#### 6. **Streamlit Port Already in Use**
+#### 3. **Streamlit Port Already in Use**
 
 ```bash
 # Run on custom port
@@ -593,18 +555,3 @@ flake8 src/
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support & Contact
-
-For issues, questions, or feature requests:
-
-- **Issues**: Open an issue on the repository
-- **Email**: [support-email]
-- **Documentation**: See [docs/](docs/) folder for detailed guides
-- **Roadmap**: Check [ROADMAP.md](ROADMAP.md) for planned features
-
----
-
-**Last Updated**: June 2024
-**Version**: 1.0.0
-**Maintainers**: [Your Organization]
