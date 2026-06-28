@@ -1,5 +1,7 @@
-pymupdf
+ultralytics
+opencv-python-headless
 openai
 python-dotenv
-opencv-python
-ultralytics
+pandas
+streamlit
+fpdf
