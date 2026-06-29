@@ -17,14 +17,14 @@
 - [API Reference](#api-reference)
 - [Docker Deployment](#docker-deployment)
 - [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## 🎯 Overview
 
 Factory Compliance & Industrial Safety System is an enterprise-grade, AI-powered platform designed to monitor and enforce factory safety policies in real-time. The system combines edge-based computer vision (YOLOv8) with cloud-based AI verification (OpenRouter VLM) to detect policy violations, escalate incidents, and generate comprehensive compliance reports.
 
-![Uploading Gemini_Generated_Image_dl3fzjdl3fzjdl3f.png…]()
+<img width="2752" height="1536" alt="Gemini_Generated_Image_dl3fzjdl3fzjdl3f" src="https://github.com/user-attachments/assets/e6dea2f1-6124-4ad3-804f-69ca11adb321" />
+
 
 
 ### Key Capabilities
